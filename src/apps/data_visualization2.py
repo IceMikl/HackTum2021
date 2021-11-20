@@ -1,12 +1,8 @@
-import dash
-
 from dash import dcc
 from dash import html
 import plotly.express as px
 from dash.dependencies import Input, Output
-from dashboard.data_access import data_access as da
-import pandas as pd
-
+from data_access import data_access as da
 
 df = da.read_csv("../resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv")
 sensor_options = []

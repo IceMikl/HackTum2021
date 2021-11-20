@@ -2,12 +2,9 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-import plotly.graph_objects as go
-import plotly.express as px
 import pandas as pd
-import matplotlib.pyplot as plt
 from datetime import date
-from dashboard.data_access import data_access as da
+from data_access import data_access as da
 import dash_bootstrap_components as dbc
 from sklearn.ensemble import IsolationForest
 import numpy as np
