@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import matplotlib.pyplot as plt
+from datetime import date
 
 from data_access import data_access as da
 
@@ -16,6 +17,7 @@ df = da.read_csv("~/Desktop/hackatum/ZEISS_hacakatum_challenge_dataset.csv")
 changeUTCOffset = False
 if changeUTCOffset:
     df = da.changeUTCOffset(df)
+
 
 
 region_options = []
@@ -39,16 +41,15 @@ for region in da.get_unique_regions(df):
 
 
 layout = html.Div(id = 'parent', children = [
-    html.H1(id = 'H1', children = 'Interactive visualization', style = {'textAlign':'center',\
-                                            'marginTop':40,'marginBottom':40}),
+        html.H1(id = 'H1', children = 'Interactive visualization', style = {'textAlign':'center',\
+                                                'marginTop':40,'marginBottom':40}),
 
 
 
         html.H4(id = 'region_text', children = 'Region', style = {'textAlign':'left',\
                                             'marginTop':20,'marginBottom':20}),
         dcc.Dropdown( id = 'region',
-        options = region_options,
-        value = region_options[0]),
+        options = region_options),
 
         html.H4(id = 'source_id_text', children = 'Source id', style = {'textAlign':'left',\
                                     'marginTop':20,'marginBottom':20}),
@@ -66,6 +67,8 @@ layout = html.Div(id = 'parent', children = [
         html.H4(id = 'date_picker_text', children = 'Date picker', style = {'textAlign':'left',\
                                     'marginTop':20,'marginBottom':20}),
         dcc.DatePickerRange(
+            id = 'date_picker',
+            min_date_allowed=date(2018, 1, 1),
             start_date_placeholder_text="Start Period",
             end_date_placeholder_text="End Period",
             calendar_orientation='vertical',
@@ -97,10 +100,17 @@ def get_callbacks(app):
                   [Input(component_id='region', component_property= 'value'),
                   Input(component_id='source_id', component_property= 'value'),
                   Input(component_id='sensor_name', component_property= 'value'),
-                  ])#add date
-    def graph_update(region, source_id, sensor_name):
+                  Input('date_picker', 'start_date'),
+                  Input('date_picker', 'end_date')
+                  ])
+    def graph_update(region, source_id, sensor_name, start_date, end_date):
+        print(start_date)
+        print(end_date)
         #fig = px.scatter(tst_LSM_HS_SensorCan81_Temperature_Room, x="datetime", y="sensor_value")
-        fig = px.scatter(da.get_sensor_name(da.get_source_id(da.get_region(df, region), source_id),sensor_name), x="datetime", y="sensor_value", color="region", symbol="region")
+        df_a = da.get_sensor_name(da.get_source_id(da.get_region(df, region), source_id),sensor_name)
+        if not (start_date is None or end_date is None):
+            df_a = da.get_time_interval(df_a, start_date, end_date)
+        fig = px.scatter(df_a, x="datetime", y="sensor_value", color="region", symbol="region")
 
        #fig = go.Figure([go.Scatter(x = tst_LSM_HS_SensorCan81_Temperature_Room['datetime'], y = tst_LSM_HS_SensorCan81_Temperature_Room['sensor_value'],\
        #                 line = dict(color = 'firebrick', width = 4))
