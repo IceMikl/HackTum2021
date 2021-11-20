@@ -12,11 +12,14 @@ Created on Fri Nov 19 22:51:37 2021
 """
 
 import dash
-import dash_html_components as html
+#import dash_html_components as html
 import plotly.graph_objects as go
-import dash_core_components as dcc
+#import dash_core_components as dcc
 import plotly.express as px
 from dash.dependencies import Input, Output
+
+from dash import html
+from dash import dcc
 
 
 app = dash.Dash()
@@ -87,5 +90,5 @@ def graph_update(dropdown_value):
 
 
 
-if __name__ == '__main__': 
-    app.run_server()
+if __name__ == '__main__':
+    app.run_server(host="0.0.0.0", debug = True, port = 8050)
