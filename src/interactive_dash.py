@@ -24,7 +24,9 @@ app = dash.Dash()
 #df = px.data.stocks()
 import pandas as pd
 import matplotlib.pyplot as plt
-df=pd.read_csv(r'C:/Users/ajava/Desktop/hackatum/ZEISS_hacakatum_challenge_dataset.csv')
+
+
+df=pd.read_csv(r'../resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv')
 tst_LSM_HS_SensorCan81_Temperature_Room= df.loc[df['sensor_name'] == "LSM_HS_SensorCan81_Temperature_Room"]
 #sensor_2_LSM_HS_OW85_Temperature_MPM=df.loc[df['sensor_name'] == "LSM_HS_OW85_Temperature_MPM"]
 #sensor_3_LSM_HS_OW86_Temperature_ScannerAmp=df.loc[df['sensor_name'] == "LSM_HS_OW86_Temperature_ScannerAmp"]
