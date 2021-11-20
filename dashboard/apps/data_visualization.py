@@ -93,18 +93,20 @@ def get_callbacks(app):
         return sensor_name_options[region+source_id]
 
 
-    @app.callback(Output(component_id='bar_plot', component_property= 'figure'),
-                  [Input(component_id='dropdown', component_property= 'value')])
-    def graph_update(dropdown_value):
-        print(dropdown_value)
+    @app.callback(Output(component_id='plot', component_property= 'figure'),
+                  [Input(component_id='region', component_property= 'value'),
+                  Input(component_id='source_id', component_property= 'value'),
+                  Input(component_id='sensor_name', component_property= 'value'),
+                  ])#add date
+    def graph_update(region, source_id, sensor_name):
         #fig = px.scatter(tst_LSM_HS_SensorCan81_Temperature_Room, x="datetime", y="sensor_value")
-        fig = px.scatter(df.loc[df['sensor_name'] == "{}".format(dropdown_value)], x="datetime", y="sensor_value", color="region", symbol="region")
+        fig = px.scatter(da.get_sensor_name(da.get_source_id(da.get_region(df, region), source_id),sensor_name), x="datetime", y="sensor_value", color="region", symbol="region")
 
        #fig = go.Figure([go.Scatter(x = tst_LSM_HS_SensorCan81_Temperature_Room['datetime'], y = tst_LSM_HS_SensorCan81_Temperature_Room['sensor_value'],\
        #                 line = dict(color = 'firebrick', width = 4))
        #                ])
 
-        fig.update_layout(title = 'Current Sensor:{} - change of temperature value over time'.format(dropdown_value),
+        fig.update_layout(title = 'Region:{} Source Id:{} Sensor Name:{} - change of temperature value over time'.format(region, source_id, sensor_name),
                           xaxis_title = 'Dates',
                           yaxis_title = 'Temp'
                           )
