@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import date
 
-from dashboard.data_access import data_access as da
+from data_access import data_access as da
 
 
 
