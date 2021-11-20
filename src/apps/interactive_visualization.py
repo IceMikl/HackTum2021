@@ -2,10 +2,15 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
+import plotly.graph_objects as go
 import plotly.express as px
+import pandas as pd
+import matplotlib.pyplot as plt
 from datetime import date
 
-from data_access import data_access as da
+from dashboard.data_access import data_access as da
+
+
 
 df = da.read_csv("../resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv")
 #this operation takes 1 minutes, turn off for testing
@@ -99,19 +104,17 @@ def get_callbacks(app):
                   Input('date_picker', 'end_date')
                   ])
     def graph_update(region, source_id, sensor_name, start_date, end_date):
-        print(start_date)
-        print(end_date)
         #fig = px.scatter(tst_LSM_HS_SensorCan81_Temperature_Room, x="datetime", y="sensor_value")
         df_a = da.get_sensor_name(da.get_source_id(da.get_region(df, region), source_id),sensor_name)
         if not (start_date is None or end_date is None):
             df_a = da.get_time_interval(df_a, start_date, end_date)
-        fig = px.scatter(df_a, x="datetime", y="sensor_value", color="region", symbol="region")
+        fig = px.scatter(df_a, x="datetime", y="sensor_value")
 
        #fig = go.Figure([go.Scatter(x = tst_LSM_HS_SensorCan81_Temperature_Room['datetime'], y = tst_LSM_HS_SensorCan81_Temperature_Room['sensor_value'],\
        #                 line = dict(color = 'firebrick', width = 4))
        #                ])
 
-        fig.update_layout(title = 'Region:{} Source Id:{} Sensor Name:{} - change of temperature value over time'.format(region, source_id, sensor_name),
+        fig.update_layout(
                           xaxis_title = 'Dates',
                           yaxis_title = 'Temp'
                           )
