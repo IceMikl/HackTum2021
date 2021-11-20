@@ -2,33 +2,39 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-
-page = html.Div([
-        html.H1(children='Data Visualization'),
-])
-
-
 import plotly.graph_objects as go
 import plotly.express as px
-
-
-
-
-
-#df = px.data.stocks()
 import pandas as pd
 import matplotlib.pyplot as plt
-df=pd.read_csv("~/Desktop/hackatum/ZEISS_hacakatum_challenge_dataset.csv")
-tst_LSM_HS_SensorCan81_Temperature_Room= df.loc[df['sensor_name'] == "LSM_HS_SensorCan81_Temperature_Room"]
-#sensor_2_LSM_HS_OW85_Temperature_MPM=df.loc[df['sensor_name'] == "LSM_HS_OW85_Temperature_MPM"]
-#sensor_3_LSM_HS_OW86_Temperature_ScannerAmp=df.loc[df['sensor_name'] == "LSM_HS_OW86_Temperature_ScannerAmp"]
 
-sensors_list = df['sensor_name'].unique().tolist()
-list_of_distinct_sensor_dfs=[]
-for i,sensor in enumerate(sensors_list):
-    sensor_name="sensor_{0}_{1}".format(i,sensor)
-    new_df=df.loc[df['sensor_name']==sensor]
-    list_of_distinct_sensor_dfs.append(new_df)
+from data_access import data_access as da
+
+
+
+df = da.read_csv("~/Desktop/hackatum/ZEISS_hacakatum_challenge_dataset.csv")
+#this operation takes 1 minutes, turn off for testing
+changeUTCOffset = False
+if changeUTCOffset:
+    df = da.changeUTCOffset(df)
+
+
+region_options = []
+source_id_options = {}
+sensor_name_options = {}
+
+for region in da.get_unique_regions(df):
+    region_options.append({'label':region, 'value':region})
+
+    source_ids = []
+    for source_id in da.get_unique_source_ids(da.get_region(df, region)):
+        source_ids.append({'label':source_id, 'value':source_id})
+
+        sensor_names = []
+        for sensor_name in da.get_unique_sensor_names(da.get_source_id(da.get_region(df, region), source_id)):
+            sensor_names.append({'label':sensor_name, 'value':sensor_name})
+        sensor_name_options[region+source_id] = sensor_names
+
+    source_id_options[region] = source_ids
 
 
 
@@ -36,32 +42,57 @@ layout = html.Div(id = 'parent', children = [
     html.H1(id = 'H1', children = 'Interactive visualization', style = {'textAlign':'center',\
                                             'marginTop':40,'marginBottom':40}),
 
-        dcc.Dropdown( id = 'dropdown',
-        options = [
-            {'label': 'LSM_HS_TECO_Temperature_Hot1', 'value':'LSM_HS_OW85_Temperature_MPM'},
-            {'label': 'LSM_HS_OW86_Temperature_ScannerAmp', 'value':'LSM_HS_OW86_Temperature_ScannerAmp'},
-            {'label': 'LSM_HS_TECO_Temperature_Hot1', 'value':'LSM_HS_TECO_Temperature_Hot1'},
-            {'label': 'MicoIFHS_Temperature', 'value':'MicoIFHS_Temperature'},
-            {'label': 'LSM_HS_TECO_Temperature_Hot2', 'value':'LSM_HS_TECO_Temperature_Hot2'},
-            {'label': 'LKM980_Main_Temperature_Inside', 'value':'LKM980_Main_Temperature_Inside'},
-            {'label': 'LKM980_Main_Temperature_Outside', 'value':'LKM980_Main_Temperature_Outside'},
-            {'label': 'LSM_HS_TECO_Temperature_Cool2', 'value':'LSM_HS_TECO_Temperature_Cool2'},
-            {'label': 'LSM_HS_OW85_Temperature_Grabber', 'value':'LSM_HS_OW85_Temperature_Grabber'},
-            {'label': 'LKM980_Main_Temperature_Heatsink_FbgLkm980', 'value':'LKM980_Main_Temperature_Heatsink_FbgLkm980'},
-            {'label': 'LSM_HS_VM800_Temperature_Controller', 'value':'LSM_HS_VM800_Temperature_Controller'},
-            {'label': 'MicoIFHS_Temperature', 'value':'LSM_HS_TECO_Temperature_Cool1'},
-            {'label': 'LSM_HS_TECO_Temperature_Cool1', 'value':'LSM_HS_TECO_Temperature_Controller'},
-            {'label': 'LKM980_Main_Temperature_FPGA', 'value':'LKM980_Main_Temperature_FPGA'},
-            {'label': 'LSM_SR_Peltier_Temperature_Hot2', 'value':'LSM_SR_Peltier_Temperature_Hot2'},
-            {'label': 'LSM_SR_Peltier_Temperature_Cool2', 'value':'LSM_SR_Peltier_Temperature_Cool2'},
-            {'label': 'LSM_HS_PC_Temperature_Controller', 'value':'LSM_HS_PC_Temperature_Controller'},
-            ],
-        value = 'LSM_HS_TECO_Temperature_Hot1'),
-        dcc.Graph(id = 'bar_plot')
+
+
+        html.H4(id = 'region_text', children = 'Region', style = {'textAlign':'left',\
+                                            'marginTop':20,'marginBottom':20}),
+        dcc.Dropdown( id = 'region',
+        options = region_options,
+        value = region_options[0]),
+
+        html.H4(id = 'source_id_text', children = 'Source id', style = {'textAlign':'left',\
+                                    'marginTop':20,'marginBottom':20}),
+        dcc.Dropdown(
+            id='source_id',
+        ),
+
+        html.H4(id = 'sensor_name_text', children = 'Sensor name', style = {'textAlign':'left',\
+                                    'marginTop':20,'marginBottom':20}),
+        dcc.Dropdown(
+            id='sensor_name',
+        ),
+
+
+        html.H4(id = 'date_picker_text', children = 'Date picker', style = {'textAlign':'left',\
+                                    'marginTop':20,'marginBottom':20}),
+        dcc.DatePickerRange(
+            start_date_placeholder_text="Start Period",
+            end_date_placeholder_text="End Period",
+            calendar_orientation='vertical',
+        ),
+
+        dcc.Graph(id = 'plot')
     ])
 
 
+
 def get_callbacks(app):
+
+    @app.callback(
+        dash.dependencies.Output('source_id', 'options'),
+        [dash.dependencies.Input('region', 'value')]
+    )
+    def update_source_id_dropdown(region):
+        return source_id_options[region]
+
+    @app.callback(
+        dash.dependencies.Output('sensor_name', 'options'),
+        [dash.dependencies.Input('region', 'value'), dash.dependencies.Input('source_id', 'value'), ]
+    )
+    def update_sensor_name_dropdown(region, source_id):
+        return sensor_name_options[region+source_id]
+
+
     @app.callback(Output(component_id='bar_plot', component_property= 'figure'),
                   [Input(component_id='dropdown', component_property= 'value')])
     def graph_update(dropdown_value):
