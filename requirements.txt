@@ -3,3 +3,5 @@ plotly
 dash
 pandas
 matplotlib
+dash_bootstrap_components
+sklearn

@@ -8,11 +8,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import date
 
-from data_access import data_access as da
+from dashboard.data_access import data_access as da
 
 
 
-df = da.read_csv("~/Desktop/hackatum/ZEISS_hacakatum_challenge_dataset.csv")
+df = da.read_csv("../resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv")
 #this operation takes 1 minutes, turn off for testing
 changeUTCOffset = False
 if changeUTCOffset:
