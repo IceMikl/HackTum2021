@@ -1,14 +1,10 @@
-import dash
-
 from dash import dcc
 from dash import html
 import plotly.express as px
 from dash.dependencies import Input, Output
 from data_access import data_access as da
-import pandas as pd
 
-
-df = da.read_csv("~/Desktop/hackatum/ZEISS_hacakatum_challenge_dataset.csv")
+df = da.read_csv("../resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv")
 sensor_options = []
 for sensor in da.get_unique_sensor_names(df):
     sensor_options.append({'label':sensor, 'value':sensor})

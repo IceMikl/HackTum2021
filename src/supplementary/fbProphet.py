@@ -16,7 +16,7 @@ def func(row):
     
     return row.datetime + floatToTimedelta(row.UTCOffset)
 
-df=pd.read_csv(r'C:/Users/ajava/Desktop/hackatum/ZEISS_hacakatum_challenge_dataset.csv')
+df=pd.read_csv(r"../../resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv")
 def get_region(df, region):
     return df.loc[(df['region']==region)]
 

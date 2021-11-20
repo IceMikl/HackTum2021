@@ -11,4 +11,4 @@ ADD resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv ../resources/Zeiss/
 
 EXPOSE 8050
 
-CMD ["python3", "interactive_dash.py"]
+CMD ["python3", "app.py"]
