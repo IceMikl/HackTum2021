@@ -6,8 +6,8 @@ from dash.dependencies import Input, Output
 
 
 page = html.Div([
-        html.H1(children='Hello User'),
+        html.H1(children='Welcome to dashboard'),
         html.Div(children='''
-        Select what you want to do
+        Select an app which you would like to use
         '''),
 ])
