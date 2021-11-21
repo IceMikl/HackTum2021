@@ -35,9 +35,7 @@ sidebar = html.Div(
 
 
         html.Hr(),
-        html.P(
-            "ELEGANCE", className="lead", style={'text-align': 'center', 'text-weight': 'bold'}
-        ),
+        # html.P([html.Strong("Elegance", style={"color":"blue"})]),
         dbc.Nav(
             [
                 dbc.NavLink("Home", href="/", active="exact"),
@@ -91,5 +89,5 @@ def render_page_content(pathname):
 
 
 if __name__ == "__main__":
-    app.title = "ELEGANCE"
+    app.title = "Elegance"
     app.run_server(host="0.0.0.0", debug=False, dev_tools_ui=False, dev_tools_props_check=False, port = 8050)

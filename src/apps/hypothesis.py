@@ -7,13 +7,13 @@ import dash_bootstrap_components as dbc
 
 
 layout = html.Div([
-        html.H1("Hypotheses"),
+        html.H1(children = 'Hypotheses', style = {'textAlign':'center'}),
 
 
 ################################################################################################
     html.Div([
-        html.H4(children = 'hypothesis #1', style = {'textAlign':'left',\
-                                            'marginTop':40,'marginBottom':20}),
+        html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
+                                            'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
         dbc.Carousel(
         items=[
@@ -56,8 +56,8 @@ layout = html.Div([
 ################################################################################################
     html.Div([
 
-        html.H4(children = 'hypothesis #2', style = {'textAlign':'left',\
-                                            'marginTop':40,'marginBottom':20}),
+        html.H5(children = 'Hypothesis #2', style = {'textAlign':'left',\
+                                            'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
         dbc.Carousel(
         items=[
@@ -101,8 +101,8 @@ layout = html.Div([
 ################################################################################################
     html.Div([
 
-        html.H4(children = 'hypothesis #3', style = {'textAlign':'left',\
-                                            'marginTop':40,'marginBottom':20}),
+        html.H5(children = 'Hypothesis #3', style = {'textAlign':'left',\
+                                            'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
         dbc.Carousel(
         items=[

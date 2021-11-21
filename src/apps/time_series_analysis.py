@@ -50,6 +50,7 @@ layout = html.Div(id = 'parent', children = [
                                     'marginTop':20,'marginBottom':20}),
         dcc.Dropdown(
             id='source_id_ts',
+            placeholder="Select a source id",
             options = source_id_options
         ),
 
@@ -57,7 +58,13 @@ layout = html.Div(id = 'parent', children = [
                                     'marginTop':20,'marginBottom':20}),
         dcc.Dropdown(
             id='sensor_name_ts',
+            placeholder="Select a sensor",
         ),
+
+        html.H4(id = 'prediction_days_text_ts', children = 'Number of days to predict', style = {'textAlign':'left',\
+                                            'marginTop':20,'marginBottom':20}),
+
+        dbc.Input(id="prediction_days_ts", type="number", min=0, step=1, value=10),
 
 
         html.H4(id = 'date_picker_text_ts', children = 'Date picker', style = {'textAlign':'left',\
@@ -80,12 +87,12 @@ layout = html.Div(id = 'parent', children = [
                 ),
                 html.Span(id="example-output", style={"verticalAlign": "middle"}),
             ]
-            , style = {'textAlign':'left', 'marginTop':20,'marginBottom':100}
+            , style = {'textAlign':'left', 'marginTop':30,'marginBottom':50}
         ),
 
 
         html.Div([
-                html.H4(children='Prediction Graph'),
+                html.H4(children='Predictions'),
 
                 dcc.Graph(
                     id='plot_ts_1',
@@ -128,17 +135,18 @@ def get_callbacks(app):
         [Input('button_ts', 'n_clicks'),
         Input(component_id='source_id_ts', component_property= 'value'),
         Input(component_id='sensor_name_ts', component_property= 'value'),
+        Input('prediction_days_ts', 'value'),
         Input('date_picker_ts', 'start_date'),
         Input('date_picker_ts', 'end_date'),]
     )
-    def displayClick(nclicks, source_id, sensor_name, start_date, end_date):
+    def displayClick(nclicks, source_id, sensor_name, prediction_days, start_date, end_date):
         if nclicks > 0:
             df_a = da.get_sensor_name(da.get_source_id(df, source_id),sensor_name)
             if not (start_date is None or end_date is None):
                 df_a = da.get_time_interval(df_a, start_date, end_date)
             df_a = df_a.sort_values(by=['datetime'])
 
-            fig1, fig2 = get_fbresult(df_a)
+            fig1, fig2 = get_fbresult(df_a, prediction_days)
 
             return fig1, fig2
 

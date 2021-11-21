@@ -25,7 +25,9 @@ layout = html.Div(id = 'parent', children = [
                                             'marginTop':40,'marginBottom':40}),
 
         dcc.Dropdown( id = 'dropdown',
-        options = sensor_options),
+        options = sensor_options,
+        placeholder="Select a sensor",),
+
         dcc.Graph(id = 'bar_plot')
     ])
 
