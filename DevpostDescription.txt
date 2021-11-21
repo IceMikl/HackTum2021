@@ -60,7 +60,9 @@ period of time, and provide the predictions as well as trends. One can select:
 •	Sensor name,
 •	Number of days to predict
 •	Customized data period 
-, and corresponding time-series analysis for the desired query is conducted on the go. In Fbprophet, the model is being fit using the Stan. Stan performs the Maximum-a-Posteriori optimization for parameters extremely quickly (<1 second), gives us the option to estimate parameter uncertainty using the Hamiltonian Monte Carlo algorithm.
+, and corresponding time-series analysis for the desired query is conducted on the go. 
+In Fbprophet, the model is being fit using the Stan. Stan performs the Maximum-a-Posteriori optimization for parameters extremely quickly (<1 second),
+gives us the option to estimate parameter uncertainty using the Hamiltonian Monte Carlo algorithm.
 
 
 Tool is hosted on the Azure Web App inside a Docker container. The data is also stored inside an
