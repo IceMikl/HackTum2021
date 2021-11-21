@@ -1,0 +1,86 @@
+
+## Built with: Python, Azure, plotly, pandas, flask, dash, numpy, sklearn, GitHub Actions, GIT
+
+## Inspiration
+Problem statement shows us that Machine Learning can help to solve a problem
+of temperature fluctuations. The temperature fluctuations change focus of the microscope, and
+it results in poor quality of images. This problem complicates the usage of confocal 4D imaging,
+which is applied in:
+- histopathology;
+- organs and bones modelling;
+- nerve cells and brain slices modelling;
+- live cell cultures observation;
+- and many more important research fields...
+From the data we know that the temperature fluctuations can be very strong for example:
+- ("source_id": MICDEV03, "sensor_name": "LKM980_Main_Temperature_Outside", "datetime": "Jan 20, 2021, 15:05:17", "sensor_value": 22.1)
+  ("source_id": MICDEV03, "sensor_name": "LKM980_Main_Temperature_Outside", "datetime": "Jan 20, 2021, 16:05:47", "sensor_value": 23.3)
+According to "LSM 980 with Airyscan 2" specifications the temperature fluctuations should not be stronger as 0,5 degree.
+
+We decided to apply our knowledge in Machine Learning and Software Engineering to offer the
+domain experts a tool to detect and predict temperature fluctuations to minimize their impact on the
+images quality.
+
+
+## What it does
+Our tool "Elegance" collects the data from the sensors and creates a User Interface, where
+the user can select which type of analysis or visualization he/she wants to perform. Now our tool provide
+following analytics and visualization methods:
+- "Interactive Visualization": visualizes the sensor's data, can filter by "Region", "Source ID",
+"Sensor Name" and "Date".
+- "Group Visualization": visualizes sensor's data of selected sensor type,
+by one-click on "Source ID, Region" the data will be excluded from the graph,
+by double-click on the selected "Source ID, Region" will stay the same.
+- "Anomaly Detection": helps to find anomalies in the data.
+- "Time Series Analysis":
+
+Tool is hosted on the Azure Web App inside a Docker container. The data is also stored inside an
+Azure Blob Data Lake Gen 2.
+
+
+## How we built it
+We used a wide range of Python Machine Learning and Data Visualization libraries, such as "plotly"
+"dash", "pandas", "matplotlib", "dash_bootstrap_components", "sklearn". The tool is hosted on the Flask
+server and then containerized inside a Docker container.
+We follow Clean Code conventions to make code clean and understandable. The code was build inside a
+GitHub repository. We created to branches: "main" and "develop". So we were able constantly to have
+a working tool.
+On the Azure we created Resource Group, Container Registry and Web App to save and deploy our Docker
+containers. To make CI/CD automatic we created a GitHub action, which runs by push on "main", builds
+a Docker container and moves it to the Azure Container Registry. On Web App the "Continuous Deployment"
+is activated, so new container will be automatically deployed.
+
+
+## Challenges we ran into
+- Firstly, there are problems in understanding SM+SLM components interconnection.
+A clear construction scheme would be helpful.
+- Secondly, nobody of us had worked with Azure platform and gitHub actions before, for this reason
+it took some hours until complete CI/CD flow worked properly.
+
+
+
+## Accomplishments that we're proud of
+- We created an app with great User Interface and a wide range of analytic methods.
+- We created a great list of Hypotheses, which represent possible solution for temperature
+fluctuation problems. These hypotheses can be converted to the solution methods. These can be
+helpful for the ZEISS team.
+- We went deep inside the literature to have a better understanding of challenge domain, to get
+the interconnections between system (SM and SLM) components.
+- We established an automatic CI/CD Pipeline.
+- Despite a rush development we followed Versioning and Clean Code conventions.
+- We did not have any problems with broken product.
+
+
+## What we learned
+- Azure Platform was absolutely new for all of us, during the HackTum we learned some basic of
+deployment and Machine Learning tools.
+- We learned how to do the GitHub actions and how to connect GitHub with Azure.
+- We learned a lot of theory basics in the field of microscopes measurements.
+-
+
+## What's next for Elegance
+The next steps can be:
+- a development of Azure ML workflow, which collect and analyze data
+in real time.
+- check unproved hypotheses and develop solution methods according to them.
+
+
