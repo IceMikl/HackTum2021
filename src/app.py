@@ -33,7 +33,6 @@ sidebar = html.Div(
     [
         html.Img(src=app.get_asset_url('zeiss_logo.png'), style={'height':'20%', 'width':'70%', "display":"block", "margin-left":"auto", "margin-right":"auto"}),
 
-
         html.Hr(),
         # html.P([html.Strong("Elegance", style={"color":"blue"})]),
         dbc.Nav(
@@ -89,5 +88,5 @@ def render_page_content(pathname):
 
 
 if __name__ == "__main__":
-    app.title = "Elegance"
+    app.title = "ELEGANCE"
     app.run_server(host="0.0.0.0", debug=False, dev_tools_ui=False, dev_tools_props_check=False, port = 8050)
