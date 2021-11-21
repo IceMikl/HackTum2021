@@ -36,7 +36,7 @@ sidebar = html.Div(
 
         html.Hr(),
         html.P(
-            "ELEGANCE", className="lead", style={'text-align': 'center', 'text-weight': 'bold'}
+            "Select app", className="lead"
         ),
         dbc.Nav(
             [
@@ -61,6 +61,7 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 interactive_visualization.get_callbacks(app)
 group_visualization.get_callbacks(app)
 anomaly_detection.get_callbacks(app)
+time_series_analysis.get_callbacks(app)
 hypothesis.get_callbacks(app)
 
 
@@ -90,5 +91,4 @@ def render_page_content(pathname):
 
 
 if __name__ == "__main__":
-    app.title = "ELEGANCE"
     app.run_server(host="0.0.0.0", debug=False, dev_tools_ui=False, dev_tools_props_check=False, port = 8050)

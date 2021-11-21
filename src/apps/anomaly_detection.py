@@ -111,8 +111,8 @@ def get_callbacks(app):
         [dash.dependencies.Input('source_id_isolation', 'value')]
     )
     def update_sensor_name_dropdown(source_id):
+        if source_id is None: return []
         return sensor_name_options[source_id]
-
 
 
     @app.callback(
@@ -164,6 +164,11 @@ def get_callbacks(app):
             y_data[y_data==-1] = 0
             y_data = np.array(y_data, dtype=bool)
             fig = px.scatter(df_a, x="datetime", y="sensor_value", color=y_data)
+
+            label_names = {'True':'Normal', 'False': 'Anomaly'}
+            fig.for_each_trace(lambda t: t.update(name = label_names[t.name],
+                                                  legendgroup = label_names[t.name],
+                                                  hovertemplate = t.hovertemplate.replace(t.name, label_names[t.name])))
 
             return fig, date_ranges_info
 
