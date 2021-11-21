@@ -45,7 +45,23 @@ In our tool, it is possible to do anomaly detection by querying the arbitrary po
 	Customized data period 
 , and corresponding anomaly analysis for the desired is conducted on the go.
 
-- "Time Series Analysis": performs a data prediction for selected devices.
+- "Time Series Analysis": performs a data prediction for selected devices. "Time Series Analysis": The tool used for this task is Fbprophet. 
+In the core Fbprophet utilizes a an additive regression model that encompasses 4 main components in the data:
+•	A piecewise linear or logistic growth curve trend.  The changes in trends are being detected automatically by selecting changepoints from the data.
+•	A yearly seasonal component modeled using Fourier series.
+•	A weekly seasonal component using dummy variables.
+•	A user-provided list of important holidays.
+These components are associated in the following way: y=a(t) + b(t) + c(t) + epsilon . Here a(t) represents the function of periodic changes, 
+such as weekly seasonality, whereas b(t) represents the trend function, i.e. nonperiodic changes and  represents the holiday effects. 
+Lastly,  the epsilon is the error term and represents the specific discrepancies that are not held by the model [2].
+In our tool, it is possible to do anomaly detection by querying the arbitrary portion of the data. We exhibit how the data behave for the certain 
+period of time, and provide the predictions as well as trends. One can select:
+•	Source id, i.e. microscope,
+•	Sensor name,
+•	Number of days to predict
+•	Customized data period 
+, and corresponding time-series analysis for the desired query is conducted on the go. In Fbprophet, the model is being fit using the Stan. Stan performs the Maximum-a-Posteriori optimization for parameters extremely quickly (<1 second), gives us the option to estimate parameter uncertainty using the Hamiltonian Monte Carlo algorithm.
+
 
 Tool is hosted on the Azure Web App inside a Docker container. The data is also stored inside an
 Azure Blob Data Lake Gen 2.
