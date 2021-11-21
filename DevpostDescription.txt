@@ -30,7 +30,16 @@ following analytics and visualization methods:
 - "Group Visualization": visualizes sensor's data of selected sensor type,
 by one-click on "Source ID, Region" the data will be excluded from the graph,
 by double-click on the selected "Source ID, Region" will stay the same.
-- "Anomaly Detection": helps to find anomalies in the data.
+- "Anomaly Detection": helps to find anomalies in the data. The method used for this task is Isolation Forests. Isolation forests, 
+like Random Forests, one of the most widely used tree algorithms for machine learning, are generating several decision trees which are based on the data sample fed to the al-gorithm. Once the decision trees are generated, the next task for the isolation forests is to figure out the length of the path to ‘isolate’ an observation. The process of isolation of such observations is conducted by a random feature selection and, subsequently, a random split value range selection between the selected feature’s minimum and maximum values [1]. Assuming there are n samples, the maximum depth of each tree in the forest is: ceil(log_2(n))
+In our tool, it is possible to do anomaly detection by querying the arbitrary portion of the data. One can select:
+	Source id, i.e. microscope,
+	Sensor name,
+	Contamination percentage, i.e. the expected ratio of the outlier data in the whole set
+	Data range delta,
+	Customized data period 
+, and corresponding anomaly analysis for the desired is conducted on the go.
+
 - "Time Series Analysis": performs a data prediction for selected devices.
 
 Tool is hosted on the Azure Web App inside a Docker container. The data is also stored inside an
@@ -75,7 +84,7 @@ the interconnections between system (SM and SLM) components.
 deployment and Machine Learning tools.
 - We learned how to do the GitHub actions and how to connect GitHub with Azure.
 - We learned a lot of theory basics in the field of microscopes measurements.
--
+- We learned a number of modern scientific approaches for the time-series data
 
 ## What's next for ELEGANCE
 The next steps can be:
