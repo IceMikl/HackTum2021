@@ -45,7 +45,12 @@ layout = html.Div([
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Detailed description blalalalallalalalalalalallalalalalalallalalalalalallala")),
+                dbc.Card(dbc.CardBody("Hypothesis 1: Detect anomalies in microscope's sensor values according to"
+                                      " unexpected behavior in comparison to other microscopes. \n"
+                                      " If there is a correlation between sensor type in a group of microscope, "
+                                      " then we can detect anomalies more easily."
+                                      " Unfortunately, there was not found strong correlation between sensor"
+                                      " values in different microscope's groups")),
                 id="collapse-1",
                 is_open=False,
             ),
@@ -91,8 +96,9 @@ layout = html.Div([
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Correlation between different microscopes given the region and sensor? \n "
-                                      "We see that")),
+                dbc.Card(dbc.CardBody("Hypothesis 2: Correlation by given region and sensor type? \n "
+                                      " We see that there is a correlation and we can use this approach"
+                                      "to detect anomalies.")),
                 id="collapse-2",
                 is_open=False,
             ),
@@ -189,8 +195,8 @@ layout = html.Div([
             dbc.Collapse(
                 dbc.Card(dbc.CardBody("Hypothesis 4: \"Hot\" outliers are in summer, \"Cold\" outliers are in winter? "
                                       "So, less outliers are in spring and autumn?"
-                                      "The Hypothesis 4 was not proved, if it would then it will be easier to"
-                                      "detect anomalies.")),
+                                      "If it will be the case, then it will be easier to detect anomalies."
+                                      "The Hypothesis 4 was not proved, there was found reliable correlations")),
                 id="collapse-4",
                 is_open=False,
             ),
@@ -333,7 +339,11 @@ layout = html.Div([
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 7: ")),
+                dbc.Card(dbc.CardBody("Hypothesis 7: During Corona lockdown the temperature of the room should"
+                                      "be lower."
+                                      "The Hypothesis was proved, we decided that possible causes can de "
+                                      "e.g. less people are in the building, less devices run etc. so less"
+                                      "warm is produced.")),
                 id="collapse-7",
                 is_open=False,
             ),
@@ -379,7 +389,10 @@ layout = html.Div([
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 8: ")),
+                dbc.Card(dbc.CardBody("Hypothesis 8: The Peltier heating warms up the Controllers Circuits."
+                                      "The Peltier heating element generates a lot warm, so the temperature of "
+                                      "other devices will be changed. To solve the problem of temperature "
+                                      "fluctuations we should change the voltage in Peltier element gradually")),
                 id="collapse-8",
                 is_open=False,
             ),
