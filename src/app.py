@@ -6,6 +6,7 @@ from apps import interactive_visualization
 from apps import group_visualization
 from apps import anomaly_detection
 from apps import time_series_analysis
+from apps import hypothesis
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -30,10 +31,12 @@ CONTENT_STYLE = {
 
 sidebar = html.Div(
     [
-        html.H2("Zeiss", className="display-4"),
+        html.Img(src=app.get_asset_url('zeiss_logo.png'), style={'height':'20%', 'width':'70%', "display":"block", "margin-left":"auto", "margin-right":"auto"}),
+
+
         html.Hr(),
         html.P(
-            "Select your app", className="lead"
+            "Select app", className="lead"
         ),
         dbc.Nav(
             [
@@ -42,6 +45,7 @@ sidebar = html.Div(
                 dbc.NavLink("Group Visualization", href="/group_visualization", active="exact"),
                 dbc.NavLink("Anomaly Detection", href="/anomaly_detection", active="exact"),
                 dbc.NavLink("Time Series Analysis", href="/time_series_analysis", active="exact"),
+                dbc.NavLink("Hypotheses", href="/hypotheses", active="exact"),
             ],
             vertical=True,
             pills=True,
@@ -57,6 +61,8 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 interactive_visualization.get_callbacks(app)
 group_visualization.get_callbacks(app)
 anomaly_detection.get_callbacks(app)
+hypothesis.get_callbacks(app)
+
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
@@ -70,6 +76,9 @@ def render_page_content(pathname):
         return anomaly_detection.layout
     elif pathname == "/time_series_analysis":
         return time_series_analysis.layout
+    elif pathname == "/hypotheses":
+        return hypothesis.layout
+
     # If the user tries to reach a different page, return a 404 message
     return dbc.Jumbotron(
         [
@@ -81,4 +90,4 @@ def render_page_content(pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(host="0.0.0.0", debug = True, port = 8050)
+    app.run_server(host="0.0.0.0", debug=False, dev_tools_ui=False, dev_tools_props_check=False, port = 8050)

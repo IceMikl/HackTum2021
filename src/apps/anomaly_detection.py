@@ -168,31 +168,3 @@ def get_callbacks(app):
             return fig, date_ranges_info
 
         return None, date_ranges_info
-
-
-    # @app.callback(Output(component_id='plot_isolation', component_property= 'figure'),
-    #               [
-    #               Input(component_id='source_id_isolation', component_property= 'value'),
-    #               Input(component_id='sensor_name_isolation', component_property= 'value'),
-    #               Input('date_picker_isolation', 'start_date'),
-    #               Input('date_picker_isolation', 'end_date')
-    #               ])
-    #
-    # def graph_update(region, source_id, sensor_name, start_date, end_date):
-    #     print(start_date)
-    #     print(end_date)
-    #     #fig = px.scatter(tst_LSM_HS_SensorCan81_Temperature_Room, x="datetime", y="sensor_value")
-    #     df_a = da.get_sensor_name(da.get_source_id(da.get_region(df, region), source_id),sensor_name)
-    #     if not (start_date is None or end_date is None):
-    #         df_a = da.get_time_interval(df_a, start_date, end_date)
-    #     fig = px.scatter(df_a, x="datetime", y="sensor_value", color="region", symbol="region")
-    #
-    #    #fig = go.Figure([go.Scatter(x = tst_LSM_HS_SensorCan81_Temperature_Room['datetime'], y = tst_LSM_HS_SensorCan81_Temperature_Room['sensor_value'],\
-    #    #                 line = dict(color = 'firebrick', width = 4))
-    #    #                ])
-    #
-    #     fig.update_layout(title = 'Region:{} Source Id:{} Sensor Name:{} - change of temperature value over time'.format(region, source_id, sensor_name),
-    #                       xaxis_title = 'Dates',
-    #                       yaxis_title = 'Temp'
-    #                       )
-    #     return fig
