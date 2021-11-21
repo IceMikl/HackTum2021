@@ -33,11 +33,8 @@ sidebar = html.Div(
     [
         html.Img(src=app.get_asset_url('zeiss_logo.png'), style={'height':'20%', 'width':'70%', "display":"block", "margin-left":"auto", "margin-right":"auto"}),
 
-
         html.Hr(),
-        html.P(
-            "ELEGANCE", className="lead", style={'text-align': 'center', 'text-weight': 'bold'}
-        ),
+        # html.P([html.Strong("Elegance", style={"color":"blue"})]),
         dbc.Nav(
             [
                 dbc.NavLink("Home", href="/", active="exact"),
@@ -61,6 +58,7 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 interactive_visualization.get_callbacks(app)
 group_visualization.get_callbacks(app)
 anomaly_detection.get_callbacks(app)
+time_series_analysis.get_callbacks(app)
 hypothesis.get_callbacks(app)
 
 

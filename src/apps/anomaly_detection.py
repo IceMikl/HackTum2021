@@ -47,14 +47,28 @@ layout = html.Div(id = 'parent', children = [
                                     'marginTop':20,'marginBottom':20}),
         dcc.Dropdown(
             id='source_id_isolation',
-            options = source_id_options
+            options = source_id_options,
+            placeholder="Select a source id",
         ),
 
         html.H4(id = 'sensor_name_text_isolation', children = 'Sensor name', style = {'textAlign':'left',\
                                     'marginTop':20,'marginBottom':20}),
         dcc.Dropdown(
             id='sensor_name_isolation',
+            placeholder="Select a sensor",
         ),
+
+
+        html.H4(id = 'contamination_text_isolation', children = 'Contamination percentage', style = {'textAlign':'left',\
+                                            'marginTop':20,'marginBottom':20}),
+
+        dbc.Input(id="contamination_isolation", type="number", min=0, max=100, step=1, value=5),
+
+
+        html.H4(id = 'data_range_tolerance_text_isolation', children = 'Date range delta', style = {'textAlign':'left',\
+                                            'marginTop':20,'marginBottom':20}),
+
+        dbc.Input(id="date_ranges_tolerance_isolation", type="number", value=7),
 
 
         html.H4(id = 'date_picker_text_isolation', children = 'Date picker', style = {'textAlign':'left',\
@@ -67,18 +81,6 @@ layout = html.Div(id = 'parent', children = [
             calendar_orientation='vertical',
         ),
 
-        html.H4(id = 'contamination_text_isolation', children = 'Contamination percentage (0 to 100)', style = {'textAlign':'left',\
-                                            'marginTop':20,'marginBottom':20}),
-
-        dbc.Input(id="contamination_isolation", type="number", min=0, max=100, step=1, value=5),
-
-
-        html.H4(id = 'data_range_tolerance_text_isolation', children = 'Date range tolerance', style = {'textAlign':'left',\
-                                            'marginTop':20,'marginBottom':20}),
-
-        dbc.Input(id="date_ranges_tolerance_isolation", type="number", value=7),
-
-
         html.Div(
             [
                 dbc.Button(
@@ -86,7 +88,7 @@ layout = html.Div(id = 'parent', children = [
                 ),
                 html.Span(id="example-output", style={"verticalAlign": "middle"}),
             ]
-            , style = {'textAlign':'left', 'marginTop':20,'marginBottom':20}
+            , style = {'textAlign':'left', 'marginTop':30,'marginBottom':20}
         ),
 
         # html.Div(id='date_ranges_isolation'),
@@ -111,8 +113,8 @@ def get_callbacks(app):
         [dash.dependencies.Input('source_id_isolation', 'value')]
     )
     def update_sensor_name_dropdown(source_id):
+        if source_id is None: return []
         return sensor_name_options[source_id]
-
 
 
     @app.callback(
@@ -164,6 +166,11 @@ def get_callbacks(app):
             y_data[y_data==-1] = 0
             y_data = np.array(y_data, dtype=bool)
             fig = px.scatter(df_a, x="datetime", y="sensor_value", color=y_data)
+
+            label_names = {'True':'Normal', 'False': 'Anomaly'}
+            fig.for_each_trace(lambda t: t.update(name = label_names[t.name],
+                                                  legendgroup = label_names[t.name],
+                                                  hovertemplate = t.hovertemplate.replace(t.name, label_names[t.name])))
 
             return fig, date_ranges_info
 

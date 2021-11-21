@@ -49,18 +49,21 @@ layout = html.Div(id = 'parent', children = [
         html.H4(id = 'region_text', children = 'Region', style = {'textAlign':'left',\
                                             'marginTop':20,'marginBottom':20}),
         dcc.Dropdown( id = 'region',
-        options = region_options),
+        options = region_options,
+        placeholder="Select a region",),
 
         html.H4(id = 'source_id_text', children = 'Source id', style = {'textAlign':'left',\
                                     'marginTop':20,'marginBottom':20}),
         dcc.Dropdown(
             id='source_id',
+            placeholder="Select a source id",
         ),
 
         html.H4(id = 'sensor_name_text', children = 'Sensor name', style = {'textAlign':'left',\
                                     'marginTop':20,'marginBottom':20}),
         dcc.Dropdown(
             id='sensor_name',
+            placeholder="Select a sensor",
         ),
 
 
@@ -116,6 +119,6 @@ def get_callbacks(app):
 
         fig.update_layout(
                           xaxis_title = 'Dates',
-                          yaxis_title = 'Temp'
+                          yaxis_title = 'Temperature'
                           )
         return fig

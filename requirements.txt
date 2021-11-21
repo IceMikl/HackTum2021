@@ -5,3 +5,7 @@ pandas
 matplotlib
 dash_bootstrap_components
 sklearn
+
+
+pystan
+prophet
