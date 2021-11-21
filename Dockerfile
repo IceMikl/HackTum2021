@@ -8,6 +8,7 @@ RUN pip3 install -r requirements.txt
 
 ADD src /src
 ADD resources/Zeiss/ZEISS_hacakatum_challenge_dataset.csv ../resources/Zeiss/
+ADD resources/Hypotheses ../resources/Hypotheses/
 
 EXPOSE 8050
 

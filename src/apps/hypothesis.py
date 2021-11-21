@@ -63,20 +63,20 @@ layout = html.Div([
         items=[
             {
                 "key": "1",
-                "src": "assets/plot_example.png",
-                "header": "With header ",
-                "caption": "and caption",
+                "src": "assets/Hypotheses/hypothesis_2.PNG",
+                "header": "",
+                "caption": "Correlation between different microscopes given the region and sensor.",
             },
             {
                 "key": "2",
                 "src": "assets/plot_example.png",
-                "header": "With header only",
+                "header": "",
                 "caption": "",
             },
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':780, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
@@ -89,7 +89,7 @@ layout = html.Div([
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Detailed description blalalalallalalalalalalallalalalalalallalalalalalallala")),
+                dbc.Card(dbc.CardBody("Correlation between different microscopes given the region and sensor?")),
                 id="collapse-2",
                 is_open=False,
             ),
