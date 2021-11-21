@@ -42,6 +42,8 @@ sidebar = html.Div(
                 dbc.NavLink("Visualize data2", href="/data_visualization2", active="exact"),
                 dbc.NavLink("Isolation forests", href="/isolation_forests", active="exact"),
                 dbc.NavLink("Anomaly detection", href="/anomaly_detection", active="exact"),
+                dbc.NavLink("fbprophet", href="/fbprophet", active="exact"),
+
             ],
             vertical=True,
             pills=True,
