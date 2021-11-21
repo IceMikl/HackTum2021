@@ -1,9 +1,9 @@
 
-## Built with: Python, Azure, plotly, pandas, flask, dash, numpy, sklearn, GitHub Actions, GIT
+## Built with: Python, Azure, plotly, pandas, flask, dash, numpy, sklearn, prophet, GitHub Actions, GIT
 
 ## Inspiration
 Problem statement shows us that Machine Learning can help to solve a problem
-of temperature fluctuations. The temperature fluctuations change focus of the microscope, and
+of temperature fluctuations in microscopes. The fluctuations change focus in the microscope, and
 it results in poor quality of images. This problem complicates the usage of confocal 4D imaging,
 which is applied in:
 - histopathology;
@@ -14,15 +14,15 @@ which is applied in:
 From the data we know that the temperature fluctuations can be very strong for example:
 - ("source_id": MICDEV03, "sensor_name": "LKM980_Main_Temperature_Outside", "datetime": "Jan 20, 2021, 15:05:17", "sensor_value": 22.1)
   ("source_id": MICDEV03, "sensor_name": "LKM980_Main_Temperature_Outside", "datetime": "Jan 20, 2021, 16:05:47", "sensor_value": 23.3)
-According to "LSM 980 with Airyscan 2" specifications the temperature fluctuations should not be stronger as 0,5 degree.
+According to "LSM 980 with Airyscan 2" specifications the temperature fluctuations should not be stronger as 0,5 degree per hour.
 
 We decided to apply our knowledge in Machine Learning and Software Engineering to offer the
-domain experts a tool to detect and predict temperature fluctuations to minimize their impact on the
-images quality.
+domain experts a tool to detect and predict temperature fluctuations. "ELEGANCE" allows to minimize the impact
+of temperature fluctuations on the images quality.
 
 
 ## What it does
-Our tool "Elegance" collects the data from the sensors and creates a User Interface, where
+Our tool "ELEGANCE" collects the data from the sensors and creates a User Interface, where
 the user can select which type of analysis or visualization he/she wants to perform. Now our tool provide
 following analytics and visualization methods:
 - "Interactive Visualization": visualizes the sensor's data, can filter by "Region", "Source ID",
@@ -31,7 +31,7 @@ following analytics and visualization methods:
 by one-click on "Source ID, Region" the data will be excluded from the graph,
 by double-click on the selected "Source ID, Region" will stay the same.
 - "Anomaly Detection": helps to find anomalies in the data.
-- "Time Series Analysis":
+- "Time Series Analysis": performs a data prediction for selected devices.
 
 Tool is hosted on the Azure Web App inside a Docker container. The data is also stored inside an
 Azure Blob Data Lake Gen 2.
@@ -77,7 +77,7 @@ deployment and Machine Learning tools.
 - We learned a lot of theory basics in the field of microscopes measurements.
 -
 
-## What's next for Elegance
+## What's next for ELEGANCE
 The next steps can be:
 - a development of Azure ML workflow, which collect and analyze data
 in real time.
