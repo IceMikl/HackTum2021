@@ -98,3 +98,10 @@ in real time.
 - check unproved hypotheses and develop solution methods according to them.
 
 
+
+
+
+REFERENCES-
+
+[1]. F. T. Liu, K. M. Ting, and Z.-H. Zhou, “Isolation Forest,” 2008 Eighth IEEE International Conference on Data Mining, 2008.
+
