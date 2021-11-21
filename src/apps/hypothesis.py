@@ -45,9 +45,9 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 1: The Peltier heating warms up the Controllers Circuits."
-                                      "The Peltier heating element generates a lot warm, so the temperature of "
-                                      "other devices will be changed. To solve the problem of temperature "
+                dbc.Card(dbc.CardBody("Hypothesis 1: The Peltier heating warms up the Controller's Circuits." 
+                                      "The Peltier heating element generates a lot of warm, so the temperature of " 
+                                      "other devices will be changed. To solve the problem of temperature " 
                                       "fluctuations we should change the voltage in Peltier element gradually")),
                 id="collapse-8",
                 is_open=False,
@@ -88,8 +88,8 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 2: Correlation by given region and sensor type? \n "
-                                      " We see that there is a correlation and we can use this approach"
+                dbc.Card(dbc.CardBody("Hypothesis 2: Correlation by given region and sensor type? \n " 
+                                      " We see that there is a correlation and we can use this approach" 
                                       "to detect anomalies.")),
                 id="collapse-2",
                 is_open=False,
@@ -136,9 +136,9 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 3: Increase of \"LSM_HS_SensorCan81_Temperature_Room\" causes increase in \"LKM980_Main_Temperature_Outside\" \n" 
-                                      "We see that the after the temperature in the room increased, there is "
-                                      "also temperature increase on the LSM device outside. \n"
+                dbc.Card(dbc.CardBody("Hypothesis 3: Increase of \"LSM_HS_SensorCan81_Temperature_Room\" causes increase in \"LKM980_Main_Temperature_Outside\" \n"  
+                                      "We see that the after a temperature increase in the room , there is " 
+                                      "also a temperature increase on the LSM device outside. \n" 
                                       "We can perform heating/cooling actions in advance to reduce temperature fluctuations.")),
                 id="collapse-3",
                 is_open=False,
@@ -156,21 +156,7 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                                             'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
         dbc.Carousel(
-        items=[
-            {
-                "key": "1",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
-                "header": "",
-                "caption": "",
-            },
-            {
-                "key": "2",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
-                "header": "",
-                "caption": "",
-            },
-
-        ],
+        items=[ ],
         variant="dark",
         style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
@@ -185,10 +171,10 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 4: \"Hot\" outliers are in summer, \"Cold\" outliers are in winter? "
-                                      "So, less outliers are in spring and autumn?"
-                                      "If it will be the case, then it will be easier to detect anomalies."
-                                      "The Hypothesis 4 was not proved, there was found reliable correlations")),
+                dbc.Card(dbc.CardBody("Hypothesis 4: \"Hot\" outliers are in summer, \"Cold\" outliers are in winter? " 
+                                      "So, less outliers are in spring and autumn?" 
+                                      "If it will be the case, then it will be easier to detect anomalies." 
+                                      "The Hypothesis 4 was not proved, there were not found reliable correlations")),
                 id="collapse-4",
                 is_open=False,
             ),
@@ -234,7 +220,7 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 5 (more a feature): In the case of anomaly suspicion,"
+                dbc.Card(dbc.CardBody("Hypothesis 5 (more a feature): In the case of anomaly suspicion," 
                                       " ask the system to measure the temperature again.")),
                 id="collapse-5",
                 is_open=False,
@@ -281,10 +267,10 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 6: Does the time of day (day, midday, afternoon, night) "
-                                      "influence room temperature -> device temperature?"
-                                      "The hypothesis was proved that for example at 18o'clock is the \"hottest\""
-                                      "and temperature is the highest. After we know the surrounding temperature"
+                dbc.Card(dbc.CardBody("Hypothesis 6: Does the time of day (day, midday, afternoon, night) " 
+                                      "influence room temperature -> device temperature?" 
+                                      "The hypothesis was proved that for example at 18o'clock is the \"hottest\"" 
+                                      "and temperature is the highest. After we know the surrounding temperature" 
                                       "behaviour, we can adjust a heating/cooling in microscope.")),
                 id="collapse-6",
                 is_open=False,
@@ -331,10 +317,10 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 7: During Corona lockdown the temperature of the room should"
-                                      "be lower."
-                                      "The Hypothesis was proved, we decided that possible causes can de "
-                                      "e.g. less people are in the building, less devices run etc. so less"
+                dbc.Card(dbc.CardBody("Hypothesis 7: During Corona lockdown the temperature of the room should" 
+                                      "be lower." 
+                                      "The Hypothesis was proved, we decided that possible causes can de " 
+                                      "e.g. less people are in the building, less devices run etc. so less" 
                                       "warm is produced.")),
                 id="collapse-7",
                 is_open=False,
@@ -362,11 +348,11 @@ html.H5(children = 'Hypothesis #8', style = {'textAlign':'left',\
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 8: Detect anomalies in microscope's sensor values according to"
-                                      " unexpected behavior in comparison to other microscopes. \n"
-                                      " If there is a correlation between sensor type in a group of microscope, "
-                                      " then we can detect anomalies more easily."
-                                      " Unfortunately, there was not found strong correlation between sensor"
+                dbc.Card(dbc.CardBody("Hypothesis 8: Detect anomalies in microscope's sensor values according to" 
+                                      " unexpected behavior in comparison to other microscopes. \n" 
+                                      " If there is a correlation between sensor type in a group of microscope, " 
+                                      " then we can detect anomalies more easily." 
+                                      " Unfortunately, there was not found strong correlation between sensor" 
                                       " values in different microscope's groups")),
                 id="collapse-1",
                 is_open=False,
