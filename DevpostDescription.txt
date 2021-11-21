@@ -2,8 +2,8 @@
 ## Built with: Python, Azure, plotly, pandas, flask, dash, numpy, sklearn, prophet, GitHub Actions, GIT
 
 ## Inspiration
-Problem statement shows us that Machine Learning can help to solve a problem
-of temperature fluctuations in microscopes. The fluctuations change focus in the microscope, and
+According to the problem statement, Machine Learning can be utilized to solve the problem
+of temperature fluctuations in microscopes. These fluctuations change the focus in the microscope, and
 it results in poor quality of images. This problem complicates the usage of confocal 4D imaging,
 which is applied in:
 - histopathology;
@@ -17,21 +17,53 @@ From the data we know that the temperature fluctuations can be very strong for e
 According to "LSM 980 with Airyscan 2" specifications the temperature fluctuations should not be stronger as 0,5 degree per hour.
 
 We decided to apply our knowledge in Machine Learning and Software Engineering to offer the
-domain experts a tool to detect and predict temperature fluctuations. "ELEGANCE" allows to minimize the impact
+domain experts a tool to visualize the temperature data as well as detect and predict temperature fluctuations. "ELEGANCE" allows us to minimize the impact
 of temperature fluctuations on the images quality.
 
 
 ## What it does
-Our tool "ELEGANCE" collects the data from the sensors and creates a User Interface, where
-the user can select which type of analysis or visualization he/she wants to perform. Now our tool provide
+"ELEGANCE" uses the data from the sensors and creates a User Interface around it, where
+a user can select which type of analysis or visualization he/she wants to perform. Our tool provides the
 following analytics and visualization methods:
 - "Interactive Visualization": visualizes the sensor's data, can filter by "Region", "Source ID",
 "Sensor Name" and "Date".
 - "Group Visualization": visualizes sensor's data of selected sensor type,
 by one-click on "Source ID, Region" the data will be excluded from the graph,
 by double-click on the selected "Source ID, Region" will stay the same.
-- "Anomaly Detection": helps to find anomalies in the data.
-- "Time Series Analysis": performs a data prediction for selected devices.
+- "Anomaly Detection": helps to find anomalies in the data. The method used for this task is Isolation Forests. Isolation forests, 
+like Random Forests, one of the most widely used tree algorithms for machine learning, are generating several decision trees
+which are based on the data sample fed to the al-gorithm. Once the decision trees are generated, the next task for the isolation forests
+is to figure out the length of the path to ‘isolate’ an observation. The process of isolation of such observations is conducted by a random
+feature selection and, subsequently, a random split value range selection between the selected feature’s minimum and maximum values [1]. 
+Assuming there are n samples, the maximum depth of each tree in the forest is: ceil(log_2(n))
+
+In our tool, it is possible to do anomaly detection by querying the arbitrary portion of the data. One can select:
+	Source id, i.e. microscope,
+	Sensor name,
+	Contamination percentage, i.e. the expected ratio of the outlier data in the whole set
+	Data range delta,
+	Customized data period 
+, and corresponding anomaly analysis for the desired is conducted on the go.
+
+- "Time Series Analysis": performs a data prediction for selected devices. "Time Series Analysis": The tool used for this task is Fbprophet. 
+In the core Fbprophet utilizes a an additive regression model that encompasses 4 main components in the data:
+•	A piecewise linear or logistic growth curve trend.  The changes in trends are being detected automatically by selecting changepoints from the data.
+•	A yearly seasonal component modeled using Fourier series.
+•	A weekly seasonal component using dummy variables.
+•	A user-provided list of important holidays.
+These components are associated in the following way: y=a(t) + b(t) + c(t) + epsilon . Here a(t) represents the function of periodic changes, 
+such as weekly seasonality, whereas b(t) represents the trend function, i.e. nonperiodic changes and  represents the holiday effects. 
+Lastly,  the epsilon is the error term and represents the specific discrepancies that are not held by the model [2].
+In our tool, it is possible to do anomaly detection by querying the arbitrary portion of the data. We exhibit how the data behave for the certain 
+period of time, and provide the predictions as well as trends. One can select:
+•	Source id, i.e. microscope,
+•	Sensor name,
+•	Number of days to predict
+•	Customized data period 
+, and corresponding time-series analysis for the desired query is conducted on the go. 
+In Fbprophet, the model is being fit using the Stan. Stan performs the Maximum-a-Posteriori optimization for parameters extremely quickly (<1 second),
+gives us the option to estimate parameter uncertainty using the Hamiltonian Monte Carlo algorithm.
+
 
 Tool is hosted on the Azure Web App inside a Docker container. The data is also stored inside an
 Azure Blob Data Lake Gen 2.
@@ -75,12 +107,20 @@ the interconnections between system (SM and SLM) components.
 deployment and Machine Learning tools.
 - We learned how to do the GitHub actions and how to connect GitHub with Azure.
 - We learned a lot of theory basics in the field of microscopes measurements.
--
+- We learned a number of modern scientific approaches for the time-series data
 
 ## What's next for ELEGANCE
 The next steps can be:
-- a development of Azure ML workflow, which collect and analyze data
+- a development of Azure ML workflow, which collects and analyzes data
 in real time.
 - check unproved hypotheses and develop solution methods according to them.
 
+
+
+
+
+REFERENCES-
+
+[1]. F. T. Liu, K. M. Ting, and Z.-H. Zhou, “Isolation Forest,” 2008 Eighth IEEE International Conference on Data Mining, 2008.
+[2]. S. J. Taylor and B. Letham, “Forecasting at scale,” PeerJ Preprints, 27-Sep-2017. [Online]. Available:https://doi.org/10.7287/peerj.preprints.3190v2.
 
