@@ -69,16 +69,11 @@ layout = html.Div([
                 "header": "",
                 "caption": "",
             },
-            {
-                "key": "2",
-                "src": "assets/Hypotheses/plot_example.PNG",
-                "header": "",
-                "caption": "",
-            },
+       
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
@@ -125,7 +120,7 @@ layout = html.Div([
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%',"display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
@@ -174,7 +169,7 @@ layout = html.Div([
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
@@ -223,7 +218,7 @@ layout = html.Div([
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
@@ -257,20 +252,20 @@ layout = html.Div([
         items=[
             {
                 "key": "1",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
+                "src": "assets/Hypotheses/hypothesis_6_1_original.PNG",
                 "header": "",
-                "caption": "",
+                "caption": "TEST",
             },
             {
                 "key": "2",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
+                "src": "assets/Hypotheses/hypothesis_6_2_original.PNG",
                 "header": "",
                 "caption": "",
             },
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
@@ -307,20 +302,20 @@ layout = html.Div([
         items=[
             {
                 "key": "1",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
+                "src": "assets/Hypotheses/hypothesis_7_1_original.PNG",
                 "header": "",
                 "caption": "",
             },
             {
                 "key": "2",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
+                "src": "assets/Hypotheses/hypothesis_7_2_original.PNG",
                 "header": "",
                 "caption": "",
             },
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
@@ -353,20 +348,20 @@ layout = html.Div([
         items=[
             {
                 "key": "1",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
+                "src": "assets/Hypotheses/hypothesis_8_1_original.PNG",
                 "header": "",
                 "caption": "",
             },
             {
                 "key": "2",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
+                "src": "assets/Hypotheses/hypothesis_8_2_original.PNG",
                 "header": "",
                 "caption": "",
             },
 
         ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
