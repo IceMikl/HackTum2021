@@ -12,37 +12,48 @@ layout = html.Div([
 
 #####################################Hypothesis #1###########################################################
     html.Div([
-        html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
+html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                                             'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
         dbc.Carousel(
-        items=[ ],
+        items=[
+            {
+                "key": "1",
+                "src": "assets/Hypotheses/hypothesis_8_1_original.PNG",
+                "header": "",
+                "caption": "",
+            },
+            {
+                "key": "2",
+                "src": "assets/Hypotheses/hypothesis_8_2_original.PNG",
+                "header": "",
+                "caption": "",
+            },
+
+        ],
         variant="dark",
-        style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
+        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
         html.Div(
         [
             dbc.Button(
                 "Read detailed description",
-                id="collapse-button-1",
+                id="collapse-button-8",
                 className="mb-3",
                 color="primary",
                 n_clicks=0,
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 1: Detect anomalies in microscope's sensor values according to"
-                                      " unexpected behavior in comparison to other microscopes. \n"
-                                      " If there is a correlation between sensor type in a group of microscope, "
-                                      " then we can detect anomalies more easily."
-                                      " Unfortunately, there was not found strong correlation between sensor"
-                                      " values in different microscope's groups")),
-                id="collapse-1",
+                dbc.Card(dbc.CardBody("Hypothesis 1: The Peltier heating warms up the Controllers Circuits."
+                                      "The Peltier heating element generates a lot warm, so the temperature of "
+                                      "other devices will be changed. To solve the problem of temperature "
+                                      "fluctuations we should change the voltage in Peltier element gradually")),
+                id="collapse-8",
                 is_open=False,
             ),
         ]
         )
-
 ]),
 
 
@@ -337,44 +348,27 @@ layout = html.Div([
 #####################################Hypothesis #8###########################################################
     html.Div([
 
-        html.H5(children = 'Hypothesis #8', style = {'textAlign':'left',\
+html.H5(children = 'Hypothesis #8', style = {'textAlign':'left',\
                                             'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
-        dbc.Carousel(
-        items=[
-            {
-                "key": "1",
-                "src": "assets/Hypotheses/hypothesis_8_1_original.PNG",
-                "header": "",
-                "caption": "",
-            },
-            {
-                "key": "2",
-                "src": "assets/Hypotheses/hypothesis_8_2_original.PNG",
-                "header": "",
-                "caption": "",
-            },
-
-        ],
-        variant="dark",
-        style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
-
         html.Div(
-        [
+            [
             dbc.Button(
                 "Read detailed description",
-                id="collapse-button-8",
+                id="collapse-button-1",
                 className="mb-3",
                 color="primary",
                 n_clicks=0,
                 style = { "display":"block", "margin-left":"auto", "margin-right":"auto"}
             ),
             dbc.Collapse(
-                dbc.Card(dbc.CardBody("Hypothesis 8: The Peltier heating warms up the Controllers Circuits."
-                                      "The Peltier heating element generates a lot warm, so the temperature of "
-                                      "other devices will be changed. To solve the problem of temperature "
-                                      "fluctuations we should change the voltage in Peltier element gradually")),
-                id="collapse-8",
+                dbc.Card(dbc.CardBody("Hypothesis 8: Detect anomalies in microscope's sensor values according to"
+                                      " unexpected behavior in comparison to other microscopes. \n"
+                                      " If there is a correlation between sensor type in a group of microscope, "
+                                      " then we can detect anomalies more easily."
+                                      " Unfortunately, there was not found strong correlation between sensor"
+                                      " values in different microscope's groups")),
+                id="collapse-1",
                 is_open=False,
             ),
         ]
