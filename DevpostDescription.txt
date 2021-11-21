@@ -120,4 +120,5 @@ in real time.
 REFERENCES-
 
 [1]. F. T. Liu, K. M. Ting, and Z.-H. Zhou, “Isolation Forest,” 2008 Eighth IEEE International Conference on Data Mining, 2008.
+[2]. S. J. Taylor and B. Letham, “Forecasting at scale,” PeerJ Preprints, 27-Sep-2017. [Online]. Available:https://doi.org/10.7287/peerj.preprints.3190v2.
 
