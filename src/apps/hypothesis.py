@@ -156,21 +156,7 @@ html.H5(children = 'Hypothesis #1', style = {'textAlign':'left',\
                                             'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
         dbc.Carousel(
-        items=[
-            {
-                "key": "1",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
-                "header": "",
-                "caption": "",
-            },
-            {
-                "key": "2",
-                "src": "assets/Hypotheses/big_temp_change.PNG",
-                "header": "",
-                "caption": "",
-            },
-
-        ],
+        items=[ ],
         variant="dark",
         style = {'height':480, 'width':'100%', "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
