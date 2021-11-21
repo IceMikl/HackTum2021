@@ -16,21 +16,7 @@ layout = html.Div([
                                             'marginTop':55,'marginBottom':20, "border-bottom": "2px solid" }),
 
         dbc.Carousel(
-        items=[
-            {
-                "key": "1",
-                "src": "assets/plot_example.png",
-                "header": "With header ",
-                "caption": "and caption",
-            },
-            {
-                "key": "2",
-                "src": "assets/plot_example.png",
-                "header": "With header only",
-                "caption": "",
-            },
-
-        ],
+        items=[ ],
         variant="dark",
         style = {'height':480, 'width':850, 'marginTop':50, 'marginBottom':200, "display":"block", "margin-left":"auto", "margin-right":"auto"},),
 
